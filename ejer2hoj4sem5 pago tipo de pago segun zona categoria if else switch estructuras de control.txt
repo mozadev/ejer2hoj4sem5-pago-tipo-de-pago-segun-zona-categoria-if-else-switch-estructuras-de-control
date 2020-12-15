@@ -1,0 +1,73 @@
+#include <iostream>
+#include<conio.h>
+#include <stdlib.h>
+using namespace std;
+char IngresaDato(int Orden)
+{
+	char Dato;
+	cin >> Dato;
+	if (Orden == 1)  if (toupper(Dato) == 'V' || (Dato) == 'P' || (Dato) == 'O') return Dato;
+	else { cout << "Error de ingreso zona!"; exit(0); _getch(); }
+	if (Orden == 2)  if (toupper(Dato) == 'C' || toupper(Dato) == 'T') return Dato;
+	else { cout << "Error Tipo de TIPO DE PAGO!"; exit(0); _getch(); }
+	if (Orden == 3)  if (toupper(Dato) == 'C' || toupper( Dato) == 'N' || toupper(Dato) == 'O') return Dato;
+	else { cout << "Error de ingreso DE BANCO!"; exit(0); _getch(); }
+}
+float Precio()
+{
+	char zona, tipopago, banco;
+	cout << "ZONA: (V) (P) (O) "; zona = IngresaDato(1);
+	cout << "tipo de pago:  (C) (T) "; tipopago= IngresaDato(2);
+	if (tipopago == 'T'|| tipopago=='t')
+	{
+		cout << "bancos: (C) (N) (O) ";  banco = IngresaDato(3);
+	}
+	switch (zona)
+	{
+	case 'V':case 'v':
+		if (tipopago == 'C'||tipopago=='c') return 1500.00;
+		if (tipopago == 'T' || tipopago == 't')
+			switch (banco)
+			{
+			case 'C':case'c': return 2000.00; break;
+			case 'N': case'n':return 1900.00; break;
+			case 'O':case'o': return 2100.00; break;
+			default:  cout << "Error de Ingreso bacnco";
+			}
+		break;
+
+
+	case 'P':case'p':
+		if (tipopago == 'C' || tipopago == 'c')return 750.00;
+		if (tipopago == 'T' || tipopago == 't')
+			switch (banco)
+			{
+			case 'C':case'c': return 950.00; break;
+			case 'N':case'n': return 875.00; break;
+			case 'O': case'o':return 1020.00; break;
+			default:  cout << "Error de Ingreso banco!";
+			}
+		break;
+
+	case 'O':case'o':
+		if (tipopago == 'C')return 265.00;
+		if (tipopago == 'T')
+			switch (banco)
+			{
+			case 'C': case'c':return 320.00; break;
+			case 'N':case'n': return 300.00; break;
+			case 'O':case'o': return 335.00; break;
+			default:  cout << "Error de Ingreso BANCO!";
+			}
+		break;
+	default: cout << "error ingreso de ZONA!";
+
+	}
+}
+
+
+int main()
+{
+	cout << Precio();
+	_getch();
+}
